@@ -1,0 +1,46 @@
+# Prosty Skaner Sieci Lokalnej w Pythonie
+
+Jest to prosty, konsolowy skaner sieci napisany w Pythonie, który pozwala na odkrywanie aktywnych hostów w sieci lokalnej oraz skanowanie popularnych portów na tych hostach.
+
+## Główne Funkcje
+
+*   **Automatyczne Wykrywanie Sieci:** Skrypt próbuje automatycznie wykryć lokalny adres IP użytkownika oraz jego sieć w notacji CIDR (np. `/24`).
+*   **Ręczne Definiowanie Zakresu:** Użytkownik może również ręcznie podać zakres sieci do przeskanowania.
+*   **Odkrywanie Aktywnych Hostów:** Szybko identyfikuje, które adresy IP w zadanym zakresie są aktywne (online).
+*   **Skanowanie Popularnych Portów:** Dla każdego aktywnego hosta skanuje predefiniowaną listę popularnych portów TCP, informując, które z nich są otwarte.
+*   **Wielowątkowość:** Wykorzystuje wątki do przyspieszenia procesu odkrywania hostów.
+*   **Czytelne Wyniki:** Prezentuje listę aktywnych hostów, a następnie tabelę z adresami IP i otwartymi portami.
+
+## Jak Używać
+
+1.  **Wymagania:**
+    *   Python 3.x
+2.  **Uruchomienie Skryptu:**
+    Przejdź do katalogu, w którym znajduje się plik `skanerIP.py` i uruchom go z terminala:
+    ```bash
+    python skanerIP.py
+    ```
+3.  **Podanie Zakresu Sieci:**
+    *   Program najpierw spróbuje automatycznie wykryć Twoją sieć. Możesz zaakceptować domyślną wartość, wciskając `Enter`.
+    *   Alternatywnie, możesz podać własny zakres sieci w formacie CIDR, np. `192.168.1.0/24` lub `10.0.0.0/16`.
+4.  **Proces Skanowania:**
+    *   **Faza 1:** Skrypt rozpocznie odkrywanie aktywnych hostów w podanym zakresie.
+    *   **Faza 2:** Po zidentyfikowaniu aktywnych hostów, dla każdego z nich rozpocznie skanowanie predefiniowanych portów, wyświetlając postęp.
+5.  **Wyniki:**
+    Po zakończeniu skanowania, program wyświetli podsumowanie w formie tabeli, pokazując adresy IP hostów, na których znaleziono otwarte porty, wraz z listą tych portów.
+
+## Lista Skanowanych Portów
+
+Skrypt domyślnie skanuje następujące popularne porty TCP:
+`21 (FTP), 22 (SSH), 23 (Telnet), 25 (SMTP), 53 (DNS), 80 (HTTP), 110 (POP3), 111 (RPCbind), 135 (MSRPC), 139 (NetBIOS), 143 (IMAP), 443 (HTTPS), 445 (Microsoft-DS), 993 (IMAPS), 995 (POP3S), 1723 (PPTP), 3306 (MySQL), 3389 (RDP), 5432 (PostgreSQL), 5900 (VNC), 8000, 8080, 8443 (HTTP Alternates)`
+
+Możesz zmodyfikować listę `COMMON_PORTS` w kodzie źródłowym, aby dostosować ją do swoich potrzeb.
+
+## Uwagi
+
+*   **Uprawnienia:** Skanowanie portów w niektórych sieciach lub na niektórych systemach może być monitorowane lub wymagać specjalnych uprawnień. Używaj tego narzędzia odpowiedzialnie i tylko w sieciach, do których masz uprawnienia.
+*   **Firewalle:** Firewalle na skanowanych maszynach lub w infrastrukturze sieciowej mogą blokować próby połączeń, co może skutkować niewykryciem otwartych portów lub nawet aktywnych hostów.
+*   **Prostota:** Jest to prosty skaner przeznaczony do podstawowych zadań. Bardziej zaawansowane narzędzia, takie jak `nmap`, oferują znacznie szerszy zakres funkcji i technik skanowania.
+
+---
+
